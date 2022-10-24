@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="icon" href="https://media.wired.com/photos/5c83066025da7204699767c7/16:9/w_2400,h_1350,c_limit/calculator-1470.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="script.js"></script>
+
+</head>
+
+
+<body onload="feat()">
+<div class="container">
+
+<h1>Calculator</h1>
+
+
+</div>
+
+
+
+<div class="calc">
+    <input class="entryfield" id="ent" type="text"><br>
+    <button class="cbtn" onclick="disp('(')">(</button>
+    <button class="cbtn" onclick="disp(')')">)</button>
+    <button class="cbtn" onclick="calc()">=</button>
+    <button class="cbtn" onclick="del()"><i class="fas fa-trash"></i></button>
+    <button class="cbtn" onclick="clrscr()"><i class="fas fa-backspace"></i></button><br>
+    <button class="cbtn" onclick="disp('7')">7</button>
+    <button class="cbtn" onclick="disp('8')">8</button>
+    <button class="cbtn" onclick="disp('9')">9</button>
+    <button class="cbtn" onclick="disp('%')">%</button>
+    <button class="cbtn" onclick="srt()"><i class="far fa-square-root"></i></button>
+    <br>
+    <button class="cbtn" onclick="disp('4')">4</button>
+    <button class="cbtn" onclick="disp('5')">5</button>
+    <button class="cbtn" onclick="disp('6')">6</button>
+    <button class="cbtn" onclick="disp('*')">*</button>
+    <button class="cbtn" onclick="disp('/')">/</button>
+    <br>
+    <button class="cbtn" onclick="disp('1')">1</button>
+    <button class="cbtn" onclick="disp('2')">2</button>
+    <button class="cbtn" onclick="disp('3')">3</button>
+    <button class="cbtn" onclick="disp('+')">+</button>
+    <button class="cbtn" onclick="disp('-')">-</button>
+    <br>
+    <button class="cbtn" onclick="disp('.')">.</button>
+    <button class="cbtn" onclick="disp('0')">0</button>
+    <button class="ebtn" onclick="calc()">Enter</button>
+
+
+</div>
+
+</body>
+</html>
