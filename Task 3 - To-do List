@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-image: linear-gradient(135deg, #00f3ff, #ffa4a4)
+        }
+
+        .dataBlock {
+            background-image: linear-gradient(314deg, #00f3ff, #ffa4a4)
+        }
+
+        .container {
+            justify-content: center;
+        }
+
+        /* When clicked on, add a background color and strike out text */
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        /* Add a "checked" mark when clicked on */
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #00ff4e;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 16px;
+            left: 8px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+    </style>
+</head>
+
+<body class="h-100">
+
+    <div class="container h-100 d-flex align-items-md-center">
+        <div class="dataBlock bg-light border shadow-lg border-dark rounded p-4 w-50 m-5">
+            <div class="text-center text-uppercase font-weight-bold h4 mb-3">
+                Add your To-Do
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Add To-Do" aria-label="Add To-Do"
+                    aria-describedby="button-addon2" id="myInput">
+                <button class="btn btn-outline-secondary ml-1" type="button" id="button-addon2"
+                    onclick="newElement()">+</button>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 rounded">
+                    <!-- <div class="container"> -->
+                    <ul class="list-group" id="myUL">
+                        <!-- <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">A fourth item</li>
+                            <li class="list-group-item">And a fifth one</li> -->
+                    </ul>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    // Create a "close" button and append it to each list item
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+    }
+
+    // Click on a close button to hide the current list item
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+
+    // Add a "checked" symbol when clicking on a list item
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function (ev) {
+        if (ev.target.tagName === 'LI') {
+            ev.target.classList.toggle('checked');
+        }
+    }, false);
+
+    // Create a new list item when clicking on the "Add" button
+    function newElement() {
+        var li = document.createElement("li");
+        li.className = "list-group-item text-center h3";
+        li.title = "Click to mark as complete"
+        li.style = "cursor:pointer"
+
+        var currentdate = new Date();
+        var datetime = " (Created on : " + currentdate.getDate() + "/"
+            + (currentdate.getMonth() + 1) + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":"
+            + currentdate.getSeconds() +")";
+
+        var inputValue = document.getElementById("myInput").value;
+
+        // console.log('datetime',inputValue + datetime);
+
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("myUL").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.title = "Delete"
+        span.style = "cursor:pointer"
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        var span2 = document.createElement("SPAN");
+        // var txt = document.createTextNode("\u00D7");
+        span2.innerHTML = datetime
+        span2.className = "text-muted h6";
+        span2.style = "cursor:pointer"
+        // span.appendChild(txt);
+        li.appendChild(span2);
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+    }
+</script>
+
+</html>
